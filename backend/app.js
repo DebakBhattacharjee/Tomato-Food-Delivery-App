@@ -6,6 +6,9 @@ app.use(express.json());
 // password: debaktanmayproj2024
 
 
+// schema required: User(login, signup), admin(login, signup), category,
+
+
 
 const mongoose = require('mongoose');
 mongoose.connect("mongodb+srv://fooddelivery2024:debaktanmayproj2024@cluster0.hj0hbke.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0").then(console.log("db connect"));
