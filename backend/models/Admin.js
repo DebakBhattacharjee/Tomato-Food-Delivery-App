@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 
-const userSchema = new Schema({
+const adminSchema = new Schema({
     name: {
         type: String,
         required: true
@@ -19,12 +19,7 @@ const userSchema = new Schema({
     phone: {
         type: String,
         required: true
-    },
-    address: {
-      type: String,
-      required: true
     }
 });
 
-const User = mongoose.model('User', userSchema);
-module.exports = User;
+module.exports = mongoose.model('Admin',adminSchema);
