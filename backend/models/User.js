@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 
-const sellerSchema = new Schema({
+const userSchema = new Schema({
     name: {
         type: String,
         required: true
@@ -20,15 +20,11 @@ const sellerSchema = new Schema({
         type: String,
         required: true
     },
-    licence: {
-        type: String,
-        unique: true,
-        required: true
-    },
-    location: {
-        type: { type: String, default: 'Point' },
-        coordinates: [Number]
+    address: {
+      type: String,
+      required: true
     }
 });
 
-module.exports = mongoose.model('Seller', sellerSchema);
+const User = mongoose.model('User', userSchema);
+module.exports = User;
