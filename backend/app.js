@@ -70,14 +70,22 @@ app.post('/products', async (req, res) => {
 app.post('/categories', async (req, res) => {
   const { name, productId } = req.body;
   try {
+    // Check if productId exists
+    const existingProduct = await Product.findById(productId);
+    if (!existingProduct) {
+      return res.status(404).send({ message: 'Product not found' });
+    }
+
+    // Create the category and associate the product
     const category = new Category({ name, products: [productId] });
     await category.save();
+
     res.status(201).send(category);
   } catch (error) {
+    console.error('Error creating category:', error);
     res.status(400).send(error);
   }
 });
-
 // Fetch a category by ID and populate its products
 app.post('/categories/fetch', async (req, res) => {
   const { id } = req.body; // Get ID from the request body
