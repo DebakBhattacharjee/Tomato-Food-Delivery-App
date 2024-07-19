@@ -4,6 +4,7 @@ import Header from '../../components/Header/Header'
 import ExploreMenu from '../../components/ExploreMenu/ExploreMenu'
 import FoodDisplay from '../../components/FoodDisplay/FoodDisplay'
 import AppDownload from '../../components/AppDownload/AppDownload'
+import ResForm from '../../components/ResForm/ResForm'
 
 const Home = () => {
 const [category,setCategory] = useState("All")
@@ -15,6 +16,7 @@ const [category,setCategory] = useState("All")
       <ExploreMenu category = {category} setCategory = {setCategory}/>
       <FoodDisplay category={category}/>
       <AppDownload/>
+      <ResForm></ResForm>
     </div>
   )
 }
