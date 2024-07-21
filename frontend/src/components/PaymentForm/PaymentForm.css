@@ -1,0 +1,30 @@
+/* src/components/PaymentForm.css */
+.payment-form {
+    margin-top: 20px;
+  }
+  
+  .payment-form div {
+    margin-bottom: 10px;
+  }
+  
+  .payment-form button {
+    margin-right: 10px;
+    background-color: green;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .payment-form button:hover {
+    background-color: darkgreen;
+  }
+  
+  .payment-form button[type="button"] {
+    background-color: grey;
+  }
+  
+  .payment-form button[type="button"]:hover {
+    background-color: darkgrey;
+  }
+  

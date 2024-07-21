@@ -7,13 +7,18 @@ const bodyParser = require('body-parser');
 const router = express.Router();
 const Product = require('./models/Products.js');
 const Category = require('./models/Category.js'); 
+const jwt = require('jsonwebtoken');
+const cors = require('cors'); 
 
+
+app.use(cors());
 // proj name: Food-delivery-app-debak-tanmay
 // userId: fooddelivery2024
 // password: debaktanmayproj2024
 
 
 const User = require('./models/user');
+const JWT_SECRET = '#RNBf]/Q=cs/HSKDYk5`:~-)j3{&c=o`}m4EZ?li\T<wlD&@mnu+nM8.ZuT9I?sW';
 
 // schema required: User(login, signup), admin(login, signup), category,
 
@@ -31,26 +36,70 @@ app.listen(3000,function(){
 // userSignup endpoint
 app.post('/signup', async (req, res) => {
   const { name, email, password, phone, address } = req.body;
+  console.log('Signup request received:', req.body);
 
   try {
-    // Check if the email already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ error: 'Email already exists' });
     }
 
-    // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create a new user with hashed password
     const newUser = new User({ name, email, password: hashedPassword, phone, address });
     await newUser.save();
 
-    res.status(201).json(newUser);
+    const token = jwt.sign(
+      { userId: newUser._id, email: newUser.email }, 
+      JWT_SECRET, 
+      { expiresIn: '1h' }
+    );
+
+    res.status(201).json({ 
+      user: {
+        name: newUser.name,
+        email: newUser.email,
+        phone: newUser.phone,
+        address: newUser.address
+      }, 
+      token 
+    });
   } catch (error) {
+    console.error('Signup error:', error);
     res.status(500).json({ error: error.message });
   }
 });
+
+app.post('/login', async (req, res) => {
+  const { email, password } = req.body;
+  console.log('Login request received:', req.body);
+
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(400).json({ error: 'User not found' });
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ error: 'Invalid credentials' });
+    }
+
+    const token = jwt.sign(
+      { userId: user._id, email: user.email },
+      JWT_SECRET,
+      { expiresIn: '1h' }
+    );
+
+    res.status(200).json({ token });
+  } catch (error) {
+    console.error('Login error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+
+
 
 // adding products and categories
 

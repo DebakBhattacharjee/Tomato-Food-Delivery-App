@@ -2,6 +2,7 @@ import React from 'react'
 import './Footer.css'
 import { assets } from '../../assets/assets'
 const Footer = () => {
+  
   return (
     <div className='footer' id='footer'>
       <div className="footer-content">
@@ -34,6 +35,7 @@ const Footer = () => {
       </div>
       <hr/>
       <p className='footer-copyright'>Copoyright 2024 Tomato- All Rights Reserved by Tanmay & Debak</p>
+
     </div>
   )
 }

@@ -79,7 +79,8 @@ export const assets = {
     profile_icon:"https://res.cloudinary.com/dy3g1sjfe/image/upload/v1721112980/profile_icon_ugdvvb.png",
     logout_icon:"https://res.cloudinary.com/dy3g1sjfe/image/upload/v1721112973/logout_icon_teopw4.png",
     bag_icon:"https://res.cloudinary.com/dy3g1sjfe/image/upload/v1721112951/bag_icon_a0ghww.png",
-    parcel_icon:"https://res.cloudinary.com/dy3g1sjfe/image/upload/v1721113012/parcel_icon_zc7gyu.png"
+    parcel_icon:"https://res.cloudinary.com/dy3g1sjfe/image/upload/v1721113012/parcel_icon_zc7gyu.png",
+    mobile_app:"https://res.cloudinary.com/dy3g1sjfe/image/upload/v1721574537/restaurantwebsite_lnnrfs.png"
 }
 
 export const menu_list = [

@@ -23,21 +23,28 @@ const ResForm = () => {
         <div className="resform-left-section">
           <img src="https://res.cloudinary.com/dy3g1sjfe/image/upload/v1721394750/main-wine.c30da0fbd212c48c4fe6_oozsxj.png" alt="Reservation" className="resform-hero-image" />
         </div>
+       
         <div className="resform-right-section">
+         
           <form className="resform-reservation-form">
-            <label>Name:</label>
+          <div className='res-container'>
+          </div>
+          <h1>Book your reservation</h1>
+            {/* <label>Name:</label>
             <input type="text" name="name" required />
             
             <label>Email:</label>
             <input type="email" name="email" required />
-            
-            <label>Time:</label>
-            <input type="time" name="time" required />
-            
-            <label>Date:</label>
+             */}
+            <label>Date</label>
             <input type="date" name="date" required />
             
-            <label>Type:</label>
+            <label>Time</label>
+            <input type="time" name="time" required />
+            
+            
+            
+            <label>Type</label>
             <select name="type" required>
               <option value="breakfast">Breakfast</option>
               <option value="lunch">Lunch</option>
