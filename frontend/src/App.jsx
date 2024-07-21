@@ -10,14 +10,15 @@ import LoginPopup from './components/LoginPopup/LoginPopup'
 import ResForm from './components/ResForm/ResForm'
 const App = () => {
 
-const [showLogin, setShowLogin] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
 
 
   return (
     <>
-    {showLogin && <LoginPopup setShowLogin={setShowLogin} />}
+    {showLogin && <LoginPopup setShowLogin={setShowLogin} setIsLoggedIn={setIsLoggedIn} />}
       <div className='app'>
-        <Navbar setShowLogin={setShowLogin}/>
+      <Navbar setShowLogin={setShowLogin} setIsLoggedIn={setIsLoggedIn} />
         <Routes>
           <Route path='/' element= {<Home/>}/>
           <Route path='/cart' element= {<Cart/>} />
