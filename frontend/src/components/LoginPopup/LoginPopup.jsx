@@ -19,7 +19,7 @@ const LoginPopup = ({ setShowLogin, setIsLoggedIn }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const url = currState === 'Login' ? 'http://localhost:5000/login' : 'http://localhost:5000/signup';
-  
+
     try {
       const response = await fetch(url, {
         method: 'POST',
@@ -28,9 +28,9 @@ const LoginPopup = ({ setShowLogin, setIsLoggedIn }) => {
         },
         body: JSON.stringify(formData),
       });
-  
+
       const data = await response.json();
-  
+
       if (response.ok) {
         localStorage.setItem('token', data.token); // Save the token
         setIsLoggedIn(true); // Update login status
@@ -43,7 +43,6 @@ const LoginPopup = ({ setShowLogin, setIsLoggedIn }) => {
       alert('An error has occurred');
     }
   };
-  
   
 
   return (

@@ -36,29 +36,25 @@ app.listen(3000,function(){
 // userSignup endpoint
 app.post('/signup', async (req, res) => {
   const { name, email, password, phone, address } = req.body;
+  console.log('Signup request received:', req.body);
 
   try {
-    // Check if the email already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ error: 'Email already exists' });
     }
 
-    // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create a new user with hashed password
     const newUser = new User({ name, email, password: hashedPassword, phone, address });
     await newUser.save();
 
-    // Create a token
     const token = jwt.sign(
       { userId: newUser._id, email: newUser.email }, 
       JWT_SECRET, 
-      { expiresIn: '1h' } // Token expires in 1 hour
+      { expiresIn: '1h' }
     );
 
-    // Respond with the new user and token
     res.status(201).json({ 
       user: {
         name: newUser.name,
@@ -69,13 +65,14 @@ app.post('/signup', async (req, res) => {
       token 
     });
   } catch (error) {
+    console.error('Signup error:', error);
     res.status(500).json({ error: error.message });
   }
 });
 
-
 app.post('/login', async (req, res) => {
   const { email, password } = req.body;
+  console.log('Login request received:', req.body);
 
   try {
     const user = await User.findOne({ email });
@@ -96,9 +93,11 @@ app.post('/login', async (req, res) => {
 
     res.status(200).json({ token });
   } catch (error) {
+    console.error('Login error:', error);
     res.status(500).json({ error: error.message });
   }
 });
+
 
 
 

@@ -3,25 +3,24 @@ import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 import { assets } from '../../assets/assets';
 
-const Navbar = ({ setShowLogin }) => {
+const Navbar = ({ setShowLogin, setIsLoggedIn: updateIsLoggedIn }) => {
   const [menu, setMenu] = useState('home');
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Track login status
   const navigate = useNavigate();
 
   // Check login status on component mount
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      setIsLoggedIn(true);
+      updateIsLoggedIn(true); // Use the prop to update login status
     } else {
-      setIsLoggedIn(false);
+      updateIsLoggedIn(false); // Use the prop to update login status
     }
-  }, []);
+  }, [updateIsLoggedIn]);
 
   // Handle logout
   const handleLogout = () => {
     localStorage.removeItem('token'); // Clear the token
-    setIsLoggedIn(false); // Update state
+    updateIsLoggedIn(false); // Use the prop to update login status
     navigate('/'); // Redirect to home or login page
   };
 
@@ -40,7 +39,7 @@ const Navbar = ({ setShowLogin }) => {
           <img src={assets.basket_icon} alt='' />
           <div className='dot'></div>
         </div>
-        {isLoggedIn ? (
+        {localStorage.getItem('token') ? (
           <button onClick={handleLogout}>Log Out</button>
         ) : (
           <button onClick={() => setShowLogin(true)}>Sign In</button>
