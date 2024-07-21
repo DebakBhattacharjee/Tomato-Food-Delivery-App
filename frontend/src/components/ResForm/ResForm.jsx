@@ -9,8 +9,8 @@ const ResForm = () => {
   };
 
   return (
-    <div className={darkMode ? 'resform dark-mode' : 'resform'}>
-      <nav className="resform-navbar">
+    <div className={darkMode ? 'resform dark-mode' : 'resform'} id='resform'>
+      {/* <nav className="resform-navbar">
         <div className="resform-logo">Logo</div>
         <div className="resform-nav-buttons">
           <button className="resform-dark-mode-toggle" onClick={toggleDarkMode}>
@@ -18,7 +18,7 @@ const ResForm = () => {
           </button>
           <button className="resform-checkout-button">Go to Checkout</button>
         </div>
-      </nav>
+      </nav> */}
       <section className="resform-hero">
         <div className="resform-left-section">
           <img src="https://res.cloudinary.com/dy3g1sjfe/image/upload/v1721394750/main-wine.c30da0fbd212c48c4fe6_oozsxj.png" alt="Reservation" className="resform-hero-image" />

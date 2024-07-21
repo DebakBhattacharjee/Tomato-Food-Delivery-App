@@ -1,5 +1,5 @@
 body {
-    margin: 0;
+    margin: 0px;
     font-family: Arial, sans-serif;
   }
   
@@ -11,6 +11,8 @@ body {
     justify-content: center;
     background: linear-gradient(to bottom right, #eee8e6, #e2a070);
     /* background: rgba(255, 255, 255, 0.1); */
+    margin-top: 35px;
+    margin-bottom: 25px;
   }
   
   .dark-mode {
@@ -71,7 +73,7 @@ body {
     /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
   }
   .resform-hero-image:hover {
-    transform: scale(1.05);
+    transform: scale(1.1);
   }
   
   .resform-reservation-form {
@@ -100,4 +102,8 @@ body {
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
   }
-  
+/*   
+
+  .home_resform {
+    margin-top: 10px;
+  } */
