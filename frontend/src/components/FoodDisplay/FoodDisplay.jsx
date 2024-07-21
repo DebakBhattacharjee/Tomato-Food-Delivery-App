@@ -1,17 +1,20 @@
-import React, { useContext } from 'react'
-import './FoodDisplay.css'
-import { StoreContext } from '../../context/StoreContext'
-import FoodItem from '../FoodItem/FoodItem'
+import React, { useContext } from 'react';
+import './FoodDisplay.css';
+import { StoreContext } from '../../context/StoreContext';
+import FoodItem from '../FoodItem/FoodItem';
+import { useEffect } from 'react';
+import * as math from 'mathjs';
 
 const FoodDisplay = ({ category }) => {
-  const { food_list } = useContext(StoreContext)
+  const { food_list } = useContext(StoreContext);
 
   return (
     <div className='food-display' id='food-display'>
-      <h2>Top Dishes near you</h2>   
+      <div className='floating-div'></div>
+      <h2>Top Dishes near you</h2>
       <div className="food-display-list">
         {food_list.map((item) => {
-          const { _id, name, description, price, image, category: itemCategory } = item
+          const { _id, name, description, price, image, category: itemCategory } = item;
           if (category === "All" || category === itemCategory) {
             return (
               <FoodItem
@@ -22,13 +25,13 @@ const FoodDisplay = ({ category }) => {
                 price={price}
                 image={image}
               />
-            )
+            );
           }
-          return null
+          return null;
         })}
-      </div>   
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default FoodDisplay
+export default FoodDisplay;
