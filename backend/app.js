@@ -55,42 +55,117 @@ app.post('/signup', async (req, res) => {
 // adding products and categories
 
 // Create a product
-app.post('/products', async (req, res) => {
-  const { name, description, price, img } = req.body;
-  try {
-    const product = new Product({ name, description, price, img });
-    await product.save();
-    res.status(201).send(product);
-  } catch (error) {
-    res.status(400).send(error);
-  }
-});
+// app.post('/products', async (req, res) => {
+//   const { name, description, price, img } = req.body;
+//   try {
+//     const product = new Product({ name, description, price, img });
+//     await product.save();
+//     res.status(201).send(product);
+//   } catch (error) {
+//     res.status(400).send(error);
+//   }
+// });
 
-// Create a category and associate a product
-app.post('/categories', async (req, res) => {
-  const { name, productId } = req.body;
-  try {
-    const category = new Category({ name, products: [productId] });
-    await category.save();
-    res.status(201).send(category);
-  } catch (error) {
-    res.status(400).send(error);
-  }
-});
+// // Create a category and associate a product
+// // app.post('/categories', async (req, res) => {
+// //   const { name, productId } = req.body;
+// //   try {
+// //     // Check if productId exists
+// //     const existingProduct = await Product.findById(mongoose.Types.ObjectId(productId));
+// //     if (!existingProduct) {
+// //       return res.status(404).send({ message: 'Product not found' });
+// //     }
 
-// Fetch a category by ID and populate its products
-app.post('/categories/fetch', async (req, res) => {
-  const { id } = req.body; // Get ID from the request body
-  try {
-    const category = await Category.findById(id).populate('products');
-    if (!category) {
-      return res.status(404).send({ message: 'Category not found' });
-    }
-    res.send(category);
-  } catch (error) {
-    res.status(500).send(error);
-  }
-});
+// //     // Create the category and associate the product
+// //     const category = new Category({ name, products: [productId] });
+// //     await category.save();
+
+// //     res.status(201).send(category);
+// //   } catch (error) {
+// //     console.error('Error creating category:', error);
+// //     res.status(400).send(error);
+// //   }
+// // });
+
+// app.post('/categories', async (req, res) => {
+//   const { name, productId } = req.body;
+
+//   try {
+//     // Check if productId exists
+//     const existingProduct = await Product.findById(productId);
+//     if (!existingProduct) {
+//       return res.status(404).send({ message: 'Product not found' });
+//     }
+
+//     // Create the category and associate the product
+//     const category = new Category({
+//       name,
+//       products: [new mongoose.Types.ObjectId(productId)] // Use new ObjectId here
+//     });
+//     await category.save();
+
+//     res.status(201).send(category);
+//   } catch (error) {
+//     console.error('Error creating category:', error);
+//     res.status(400).send(error);
+//   }
+// });
+
+
+
+
+
+// // Fetch a category by ID and populate its products
+// // app.post('/categories/fetch', async (req, res) => {
+// //   const { id } = req.body; // Get ID from the request body
+// //   try {
+// //     const category = await Category.findById(id).populate('products');
+// //     if (!category) {
+// //       return res.status(404).send({ message: 'Category not found' });
+// //     }
+// //     res.send(category);
+// //   } catch (error) {
+// //     res.status(500).send(error);
+// //   }
+// // });
+
+
+// app.post('/categories/fetch-details', async (req, res) => {
+//   const { id } = req.body;
+//   console.log('Received ID:', id);
+
+//   try {
+//     // Find category with population
+//     const category = await Category.findById(id).populate('products');
+//     if (!category) {
+//       console.log('Category not found for ID:', id);
+//       return res.status(404).send({ message: 'Category not found' });
+//     }
+
+//     // Separate product details (optional)
+//     const productDetails = category.products.map(product => ({
+//       name: product.name,
+//       description: product.description,
+//       price: product.price,
+//       img: product.img
+//     }));
+
+//     const response = {
+//       category: category,
+//       products: productDetails,
+//     };
+
+//     res.send(response);
+//   } catch (error) {
+//     console.error('Error fetching category details:', error);
+//     res.status(500).send({ message: 'Internal server error' });
+//   }
+// });
+
+
+
+
+
 
 
 app.listen(5000, () => {
