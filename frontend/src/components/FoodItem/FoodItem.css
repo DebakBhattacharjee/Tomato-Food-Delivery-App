@@ -6,6 +6,13 @@
   transition: 0.5s;
   animation: fadeIn 2s;
 }
+
+.food-item:hover{
+  transform: scale(1.03);
+  transition: 0.3s;
+  box-shadow: 5px 5px 0px 0px rgba(236, 122, 101, 0.212);
+}
+
 .food-item-image{
   width: 100%;
   border-radius: 15px 15px 0px 0px;
