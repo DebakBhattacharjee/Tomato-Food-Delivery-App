@@ -63,11 +63,7 @@ const LoginPopup = ({ setShowLogin, setIsLoggedIn }) => {
             </>
           )}
         </div>
-<<<<<<< Updated upstream
         <button type="submit">{currState === 'Sign Up' ? 'Create account' : 'Login'}</button>
-=======
-        <button type="login-button">{currState === "Sign Up" ? "Create account" : "Login"}</button>
->>>>>>> Stashed changes
         <div className="login-popup-condition">
           <input type="checkbox" required />
           <p>By continuing, I agree to the terms of use & privacy policy</p>
