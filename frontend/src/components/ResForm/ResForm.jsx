@@ -25,8 +25,10 @@ const ResForm = () => {
         </div>
        
         <div className="resform-right-section">
-        
+         
           <form className="resform-reservation-form">
+          <div className='res-container'>
+          </div>
           <h1>Book your reservation</h1>
             {/* <label>Name:</label>
             <input type="text" name="name" required />
