@@ -16,7 +16,9 @@ const [category,setCategory] = useState("All")
       <ExploreMenu category = {category} setCategory = {setCategory}/>
       <FoodDisplay category={category}/>
       <div className='home_resform'><ResForm category = {category} setCategory= {setCategory}/></div>
+      <div className='app-download-main'>
       <AppDownload/>
+      </div>
       
     </div>
   )

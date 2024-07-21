@@ -8,6 +8,7 @@ import PlaceOrder from './pages/PlaceOrder/PlaceOrder'
 import Footer from './components/Footer/Footer'
 import LoginPopup from './components/LoginPopup/LoginPopup'
 import ResForm from './components/ResForm/ResForm'
+import Checkout from './components/Checkout/Checkout'
 const App = () => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -25,6 +26,7 @@ const App = () => {
           <Route path='/cart' element= {<Cart/>} />
           <Route path='/order element' element= {<PlaceOrder/>} />
           <Route path = '/reservation' element= {<ResForm/>} />
+          <Route path="/checkout" element={<Checkout/>} />
         </Routes>
       </div>
     <Footer/>

@@ -1,3 +1,33 @@
+/* popup */
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  backdrop-filter: blur(10px);
+  background: rgba(242, 246, 246, 0.907);
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  margin-top: 20vh;
+}
+
+.popup-content {
+  text-align: center;
+}
+
+.popup-content p {
+  margin-bottom: 20px;
+}
+
+.popup-content button {
+  padding: 10px 20px;
+  background-color: tomato;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
 .navbar{
   padding: 10px ;
   display: flex;
@@ -42,6 +72,7 @@
 
 .navbar button:hover{
   background-color: #fff4f2;
+  transform: scale(1.02);
 }
 
 .navbar .active{
@@ -54,6 +85,7 @@
 
 .navbar-search-icon{
   position: relative;
+  cursor: pointer;
 }
 
 .navbar-search-icon .dot{

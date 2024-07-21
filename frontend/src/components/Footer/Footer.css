@@ -1,6 +1,7 @@
 .footer{
-  color: #d9d9d9;
-  background-color: #323232;
+  color: black;
+  backdrop-filter: blur(10px);
+   background: linear-gradient(to top right, #fcf4f2, #ef741c);
   display: flex;
   flex-direction: column;
   align-items: center;

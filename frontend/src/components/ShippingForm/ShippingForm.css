@@ -1,0 +1,21 @@
+/* src/components/ShippingForm.css */
+.shipping-form {
+    margin-top: 20px;
+  }
+  
+  .shipping-form div {
+    margin-bottom: 10px;
+  }
+  
+  .shippingform-button{
+    background-color: green;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .shippingform-button:hover {
+    background-color: darkgreen;
+  }
+  
