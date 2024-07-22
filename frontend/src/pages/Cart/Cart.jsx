@@ -3,32 +3,48 @@ import './Cart.css';
 import { StoreContext } from '../../context/StoreContext';
 import { useNavigate } from 'react-router-dom';
 
+
 const Cart = () => {
   const { cartItems, food_list, removeFromCart, getTotalCartAmount, url, currency, deliveryCharge } = useContext(StoreContext);
   const navigate = useNavigate();
-  const [showPopup, setShowPopup] = useState(false);
-
+  const [showEmptyCartPopup, setShowEmptyCartPopup] = useState(false);
+  const [showLoginPopup, setShowLoginPopup] = useState(false);
   const handleCheckoutClick = () => {
-    if (getTotalCartAmount() === 0) {
-      setShowPopup(true);
+    const token = localStorage.getItem('token');
+    if (!token) {
+      setShowLoginPopup(true);
+    } else if (getTotalCartAmount() === 0) {
+      setShowEmptyCartPopup(true);
     } else {
       navigate('/checkout'); // Navigate to the Checkout page
     }
   };
+  
+  const closeEmptyCartPopup = () => {
+    setShowEmptyCartPopup(false);
+  };
 
-  const closePopup = () => {
-    setShowPopup(false);
+  const closeLoginPopup = () => {
+    setShowLoginPopup(false);
   };
 
   const cartTotalAmount = getTotalCartAmount();
 
   return (
     <div className='cart'>
-      {showPopup && (
+      {showEmptyCartPopup && (
         <div className="popup">
           <div className="popup-content">
             <p>Your cart is empty! Please add some items to proceed.</p>
-            <button onClick={closePopup}>Close</button>
+            <button onClick={closeEmptyCartPopup}>Close</button>
+          </div>
+        </div>
+      )}
+      {showLoginPopup && (
+        <div className="popup">
+          <div className="popup-content">
+            <p>You need to be logged in to proceed to checkout.</p>
+            <button onClick={closeLoginPopup}>Close</button>
           </div>
         </div>
       )}
@@ -43,7 +59,7 @@ const Cart = () => {
             return (
               <div key={index}>
                 <div className="cart-items-title cart-items-item">
-                  <img src={url + "/images/" + item.image} alt="" />
+                  <img className='cart-item-image' src={item.image} alt="" />
                   <p>{item.name}</p>
                   <p>{currency}{item.price}</p>
                   <div>{cartItems[item._id]}</div>

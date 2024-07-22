@@ -10,7 +10,7 @@
 .food-item:hover{
   transform: scale(1.03);
   transition: 0.3s;
-  box-shadow: 5px 5px 0px 0px rgba(236, 122, 101, 0.212);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .food-item-image{

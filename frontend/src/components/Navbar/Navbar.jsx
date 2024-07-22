@@ -7,8 +7,9 @@ import { StoreContext } from '../../context/StoreContext';
 const Navbar = ({ setShowLogin, setIsLoggedIn: updateIsLoggedIn }) => {
   const [menu, setMenu] = useState('home');
   const navigate = useNavigate();
-  const { getTotalCartAmount } = useContext(StoreContext);
+  const { cartItems, getTotalCartAmount } = useContext(StoreContext);
   const [showPopup, setShowPopup] = useState(false);
+  const [totalItems, setTotalItems] = useState(0);
 
   const handleCartClick = () => {
     if (getTotalCartAmount() === 0) {
@@ -21,6 +22,12 @@ const Navbar = ({ setShowLogin, setIsLoggedIn: updateIsLoggedIn }) => {
   const closePopup = () => {
     setShowPopup(false);
   };
+
+  // Calculate total items in the cart
+  useEffect(() => {
+    const total = Object.values(cartItems).reduce((sum, count) => sum + count, 0);
+    setTotalItems(total);
+  }, [cartItems]);
 
   // Check login status on component mount
   useEffect(() => {
@@ -42,7 +49,7 @@ const Navbar = ({ setShowLogin, setIsLoggedIn: updateIsLoggedIn }) => {
   return (
     <div className='navbar'>
       <Link to='/' onClick={() => setMenu('home')}>
-        <img src={assets.logo} alt='' className='logo' />
+        <img src={assets.logo} alt='logo' className='logo' />
       </Link>
       <ul className='navbar-menu'>
         <Link to='/' onClick={() => setMenu('home')} className={menu === 'home' ? 'active' : ''}>Home</Link>
@@ -53,8 +60,8 @@ const Navbar = ({ setShowLogin, setIsLoggedIn: updateIsLoggedIn }) => {
       </ul>
       <div className='navbar-right'>
         <div className='navbar-search-icon'>
-          <img src={assets.basket_icon} alt='' onClick={handleCartClick} />
-          <div className='dot'></div>
+          <img src={assets.basket_icon} alt='cart' onClick={handleCartClick} />
+          {totalItems > 0 && <div className='cart-count'>{totalItems}</div>}
         </div>
         {localStorage.getItem('token') ? (
           <button onClick={handleLogout}>Log Out</button>

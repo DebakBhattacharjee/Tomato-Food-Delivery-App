@@ -1,31 +1,35 @@
 .app-download {
   display: flex;
+  flex-direction: column; /* Default to column for mobile */
   justify-content: space-between;
   align-items: center;
-  padding: 40px;
+  padding: 20px; /* Adjust padding for mobile */
   box-shadow: 0px 0px 5px #00000015;
   border-radius: 20px;
 }
 
 .app-download-content {
   display: flex;
+  flex-direction: column; /* Default to column for mobile */
   justify-content: space-between;
   align-items: center;
   width: 100%;
 }
 
 .app-download-text {
-  max-width: 50%;
+  width: 100%; /* Full width for mobile */
+  text-align: center; /* Center align text for mobile */
+  margin-bottom: 20px;
 }
 
 .app-download-text h1 {
-  font-size: 2rem;
+  font-size: 1.5rem; /* Adjust for mobile */
   margin-bottom: 10px;
 }
 
 .app-download-text h2 {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
+  font-size: 1.25rem; /* Adjust for mobile */
+  margin-bottom: 15px;
 }
 
 .app-download-text p {
@@ -37,17 +41,59 @@
 .app-download-platforms {
   display: flex;
   gap: 10px;
+  justify-content: center; /* Center platforms for mobile */
 }
 
 .app-download-platforms img {
-  width: 150px; /* Adjust as needed */
+  width: 120px; /* Adjust for mobile */
   height: auto;
   transition: transform 0.5s;
 }
-.app-download-platforms img:hover{
+
+.app-download-platforms img:hover {
   transform: scale(1.05);
 }
+
+.app-download-image {
+  width: 100%; /* Full width for mobile */
+  text-align: center; /* Center image for mobile */
+}
+
 .app-download-image img {
   max-width: 100%;
   height: auto;
+}
+
+@media (min-width: 768px) {
+  .app-download {
+    flex-direction: row; /* Row layout for tablet and up */
+    padding: 40px;
+  }
+
+  .app-download-content {
+    flex-direction: row;
+  }
+
+  .app-download-text {
+    max-width: 50%;
+    text-align: left; /* Left align text for larger screens */
+  }
+
+  .app-download-image {
+    max-width: 50%; /* Adjust width for larger screens */
+  }
+}
+
+@media (min-width: 1024px) {
+  .app-download-text h1 {
+    font-size: 2rem;
+  }
+
+  .app-download-text h2 {
+    font-size: 1.5rem;
+  }
+
+  .app-download-platforms img {
+    width: 150px; /* Adjust for larger screens */
+  }
 }

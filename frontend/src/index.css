@@ -1,33 +1,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 
-
-*{
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: Outfit;
+  font-family: 'Outfit', sans-serif;
 }
 
-body{
+body {
   min-height: 100vh;
   margin-top: 12vh;
 }
 
-a{
+a {
   text-decoration: none;
   color: inherit;
 }
 
-.app{
+.app {
+  width: 100%;
+  margin: auto;
+}
+
+.app-body {
   width: 80%;
   margin: auto;
 }
 
-@keyframes fadeIn{
-  0%{
+@keyframes fadeIn {
+  0% {
     opacity: 0;
   }
-  100%{
+  100% {
     opacity: 1;
   }
 }
