@@ -15,7 +15,6 @@ const Cart = () => {
       navigate('/checkout'); // Navigate to the Checkout page
     }
   };
-  
 
   const closePopup = () => {
     setShowPopup(false);

@@ -1,11 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 import { assets } from '../../assets/assets';
+import { StoreContext } from '../../context/StoreContext';
 
 const Navbar = ({ setShowLogin, setIsLoggedIn: updateIsLoggedIn }) => {
   const [menu, setMenu] = useState('home');
   const navigate = useNavigate();
+  const { getTotalCartAmount } = useContext(StoreContext);
+  const [showPopup, setShowPopup] = useState(false);
+
+  const handleCartClick = () => {
+    if (getTotalCartAmount() === 0) {
+      setShowPopup(true);
+    } else {
+      navigate('/cart');
+    }
+  };
+
+  const closePopup = () => {
+    setShowPopup(false);
+  };
 
   // Check login status on component mount
   useEffect(() => {
@@ -26,9 +41,9 @@ const Navbar = ({ setShowLogin, setIsLoggedIn: updateIsLoggedIn }) => {
 
   return (
     <div className='navbar'>
-     <Link to='/' onClick={() => setMenu("home")} >
-     <img src={assets.logo} alt='' className='logo' />
-     </Link>
+      <Link to='/' onClick={() => setMenu('home')}>
+        <img src={assets.logo} alt='' className='logo' />
+      </Link>
       <ul className='navbar-menu'>
         <Link to='/' onClick={() => setMenu('home')} className={menu === 'home' ? 'active' : ''}>Home</Link>
         <a href='#explore-menu' onClick={() => setMenu('menu')} className={menu === 'menu' ? 'active' : ''}>Menu</a>
@@ -38,7 +53,7 @@ const Navbar = ({ setShowLogin, setIsLoggedIn: updateIsLoggedIn }) => {
       </ul>
       <div className='navbar-right'>
         <div className='navbar-search-icon'>
-          <img src={assets.basket_icon} alt='' />
+          <img src={assets.basket_icon} alt='' onClick={handleCartClick} />
           <div className='dot'></div>
         </div>
         {localStorage.getItem('token') ? (
@@ -47,6 +62,14 @@ const Navbar = ({ setShowLogin, setIsLoggedIn: updateIsLoggedIn }) => {
           <button onClick={() => setShowLogin(true)}>Sign In</button>
         )}
       </div>
+      {showPopup && (
+        <div className="popup">
+          <div className="popup-content">
+            <p>Your cart is empty! Please add some items to proceed.</p>
+            <button onClick={closePopup}>Close</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
