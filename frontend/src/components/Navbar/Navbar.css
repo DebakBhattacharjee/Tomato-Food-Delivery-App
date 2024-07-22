@@ -80,6 +80,27 @@
   top: -8px;
   right: -8px;
 }
+.navbar-user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar-user-info p {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.navbar-user-info button {
+  background-color: #f00; /* Adjust as needed */
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
 
 /* Popup Styles */
 .popup {
