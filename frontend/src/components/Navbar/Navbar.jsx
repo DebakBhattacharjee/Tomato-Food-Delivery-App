@@ -79,7 +79,7 @@ const Navbar = ({ setShowLogin, setIsLoggedIn: updateIsLoggedIn }) => {
         </div>
         {localStorage.getItem('token') ? (
           <div className='navbar-user-info'>
-            <p>Hi, {userName}</p>
+            <p className='username'>Hi, {userName}</p>
             <button onClick={handleLogout}>Log Out</button>
           </div>
         ) : (
