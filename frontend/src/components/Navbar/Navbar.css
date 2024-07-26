@@ -189,8 +189,7 @@
     width: 100px;
   }
   .navbar-menu {
-    gap: 8px;
-    font-size: 15px;
+    display: none;
   }
   .navbar-right {
     gap: 15px;
