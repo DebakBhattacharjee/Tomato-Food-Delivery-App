@@ -13,13 +13,14 @@ const LoginPopup = ({ setShowLogin, setIsLoggedIn }) => {
   });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData(prevData => ({ ...prevData, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const url = currState === 'Login' ? 'http://localhost:5000/login' : 'http://localhost:5000/signup';
-
+  
     try {
       const response = await fetch(url, {
         method: 'POST',
@@ -28,11 +29,20 @@ const LoginPopup = ({ setShowLogin, setIsLoggedIn }) => {
         },
         body: JSON.stringify(formData),
       });
-
+  
       const data = await response.json();
-
+  
       if (response.ok) {
         localStorage.setItem('token', data.token); // Save the token
+        if (currState === 'Sign Up') {
+          // Store user data in local storage
+          localStorage.setItem('user', JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            address: formData.address,
+          }));          
+        }
         setIsLoggedIn(true); // Update login status
         setShowLogin(false); // Close the popup
       } else {
@@ -43,7 +53,13 @@ const LoginPopup = ({ setShowLogin, setIsLoggedIn }) => {
       alert('An error has occurred');
     }
   };
-  
+const user = localStorage.getItem('user');
+if (user) {
+  const { name } = JSON.parse(user);
+  setUserName(name);
+  console.log(name);
+}
+
 
   return (
     <div className='login-popup'>
@@ -53,7 +69,7 @@ const LoginPopup = ({ setShowLogin, setIsLoggedIn }) => {
           <img onClick={() => setShowLogin(false)} src={assets.cross_icon} alt="Close" />
         </div>
         <div className="login-popup-inputs">
-          {currState === 'Login' ? null : <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder='Your name' required />}
+          {currState === 'Sign Up' && <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder='Your name' required />}
           <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder='Your email' required />
           <input type="password" name="password" value={formData.password} onChange={handleChange} placeholder='Password' required />
           {currState === 'Sign Up' && (
@@ -68,11 +84,12 @@ const LoginPopup = ({ setShowLogin, setIsLoggedIn }) => {
           <input type="checkbox" required />
           <p>By continuing, I agree to the terms of use & privacy policy</p>
         </div>
-        {currState === 'Login' ? (
-          <p>Create a new account? <span onClick={() => setCurrState('Sign Up')}>Click here</span></p>
-        ) : (
-          <p>Already have an account? <span onClick={() => setCurrState('Login')}>Login Here</span></p>
-        )}
+        <p>
+          {currState === 'Login' ? 'Create a new account? ' : 'Already have an account? '}
+          <span onClick={() => setCurrState(currState === 'Login' ? 'Sign Up' : 'Login')}>
+            {currState === 'Login' ? 'Click here' : 'Login Here'}
+          </span>
+        </p>
       </form>
     </div>
   );

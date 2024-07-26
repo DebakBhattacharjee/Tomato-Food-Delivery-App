@@ -5,7 +5,6 @@ export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
   const [cartItems, setCartItems] = useState(() => {
-    // Get cart items from local storage, if available
     const savedCartItems = localStorage.getItem('cartItems');
     return savedCartItems ? JSON.parse(savedCartItems) : {};
   });
@@ -15,7 +14,7 @@ const StoreContextProvider = (props) => {
   const addToCart = (itemId) => {
     setCartItems((prev) => {
       const newCartItems = { ...prev, [itemId]: (prev[itemId] || 0) + 1 };
-      localStorage.setItem('cartItems', JSON.stringify(newCartItems)); // Save to local storage
+      localStorage.setItem('cartItems', JSON.stringify(newCartItems));
       return newCartItems;
     });
   };
@@ -28,24 +27,21 @@ const StoreContextProvider = (props) => {
       } else {
         delete newCartItems[itemId];
       }
-      localStorage.setItem('cartItems', JSON.stringify(newCartItems)); // Save to local storage
+      localStorage.setItem('cartItems', JSON.stringify(newCartItems));
       return newCartItems;
     });
   };
+
   const clearCart = () => {
     setCartItems({});
     localStorage.removeItem('cartItems');
   };
-  
+
   const getTotalCartAmount = () => {
-    let totalAmount = 0;
-    for (const itemId in cartItems) {
+    return Object.keys(cartItems).reduce((total, itemId) => {
       const item = food_list.find((item) => item._id === itemId);
-      if (item) {
-        totalAmount += item.price * cartItems[itemId];
-      }
-    }
-    return totalAmount;
+      return item ? total + item.price * cartItems[itemId] : total;
+    }, 0);
   };
 
   useEffect(() => {
@@ -59,7 +55,7 @@ const StoreContextProvider = (props) => {
     removeFromCart,
     cartItems,
     getTotalCartAmount,
-    deliveryCharge, // Add deliveryCharge to contextValue
+    deliveryCharge,
     clearCart
   };
 

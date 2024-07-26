@@ -1,5 +1,7 @@
 .cart {
   margin: 100px 0px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding:20px;
 }
 
 .cart hr {
@@ -14,6 +16,7 @@
   align-items: center;
   color: grey;
   font-size: max(1vw, 12px);
+  gap:10px;
 }
 
 .cart-items-item {
@@ -24,6 +27,15 @@
 .cart-items-item img {
   width: 50px;
 }
+.cart-item-image{
+  border-radius: 10px;
+  transition: 0.5s;
+}
+.cart-item-image:hover{
+  transform: scale(1.03);
+  box-shadow: 0 0 11px rgba(33,33,33,.2);
+}
+
 
 .cart-items-item div {
   max-width: 40px;

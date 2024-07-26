@@ -21,6 +21,7 @@ const App = () => {
 
       <div className='app'>
       <Navbar setShowLogin={setShowLogin} setIsLoggedIn={setIsLoggedIn} />
+        <div className='app-body'>
         <Routes>
           <Route path='/' element= {<Home/>}/>
           <Route path='/cart' element= {<Cart/>} />
@@ -28,6 +29,7 @@ const App = () => {
           <Route path = '/reservation' element= {<ResForm/>} />
           <Route path="/checkout" element={<Checkout/>} />
         </Routes>
+        </div>
       </div>
     <Footer/>
     </>

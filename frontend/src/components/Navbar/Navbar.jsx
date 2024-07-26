@@ -1,34 +1,70 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 import { assets } from '../../assets/assets';
+import { StoreContext } from '../../context/StoreContext';
 
 const Navbar = ({ setShowLogin, setIsLoggedIn: updateIsLoggedIn }) => {
   const [menu, setMenu] = useState('home');
-  const navigate = useNavigate();
+  const [showPopup, setShowPopup] = useState(false);
+  const [totalItems, setTotalItems] = useState(0);
+  const [userName, setUserName] = useState('');
 
-  // Check login status on component mount
+  const navigate = useNavigate();
+  const { cartItems, getTotalCartAmount } = useContext(StoreContext);
+
+  const handleCartClick = () => {
+    if (getTotalCartAmount() === 0) {
+      setShowPopup(true);
+    } else {
+      navigate('/cart');
+    }
+  };
+
+  const closePopup = () => {
+    setShowPopup(false);
+  };
+
+  useEffect(() => {
+    const total = Object.values(cartItems).reduce((sum, count) => sum + count, 0);
+    setTotalItems(total);
+  }, [cartItems]);
+
   useEffect(() => {
     const token = localStorage.getItem('token');
+    const user = localStorage.getItem('user');
+
     if (token) {
-      updateIsLoggedIn(true); // Use the prop to update login status
+      updateIsLoggedIn(true);
+      if (user) {
+        try {
+          const userData = JSON.parse(user);
+          const { name } = userData;
+          setUserName(name); // Set userName from localStorage
+        } catch (error) {
+          console.error('Error parsing user data:', error);
+        }
+      } else {
+        console.log('User data is not available in localStorage');
+      }
     } else {
-      updateIsLoggedIn(false); // Use the prop to update login status
+      updateIsLoggedIn(false);
     }
   }, [updateIsLoggedIn]);
 
-  // Handle logout
   const handleLogout = () => {
-    localStorage.removeItem('token'); // Clear the token
-    updateIsLoggedIn(false); // Use the prop to update login status
-    navigate('/'); // Redirect to home or login page
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    updateIsLoggedIn(false);
+    setUserName(''); // Clear userName state on logout
+    navigate('/');
   };
 
   return (
     <div className='navbar'>
-     <Link to='/' onClick={() => setMenu("home")} >
-     <img src={assets.logo} alt='' className='logo' />
-     </Link>
+      <Link to='/' onClick={() => setMenu('home')}>
+        <img src={assets.logo} alt='logo' className='logo' />
+      </Link>
       <ul className='navbar-menu'>
         <Link to='/' onClick={() => setMenu('home')} className={menu === 'home' ? 'active' : ''}>Home</Link>
         <a href='#explore-menu' onClick={() => setMenu('menu')} className={menu === 'menu' ? 'active' : ''}>Menu</a>
@@ -38,15 +74,26 @@ const Navbar = ({ setShowLogin, setIsLoggedIn: updateIsLoggedIn }) => {
       </ul>
       <div className='navbar-right'>
         <div className='navbar-search-icon'>
-          <img src={assets.basket_icon} alt='' />
-          <div className='dot'></div>
+          <img src={assets.basket_icon} alt='cart' onClick={handleCartClick} />
+          {totalItems > 0 && <div className='cart-count'>{totalItems}</div>}
         </div>
         {localStorage.getItem('token') ? (
-          <button onClick={handleLogout}>Log Out</button>
+          <div className='navbar-user-info'>
+            <p>Hi, {userName}</p>
+            <button onClick={handleLogout}>Log Out</button>
+          </div>
         ) : (
           <button onClick={() => setShowLogin(true)}>Sign In</button>
         )}
       </div>
+      {showPopup && (
+        <div className="popup">
+          <div className="popup-content">
+            <p>Your cart is empty! Please add some items to proceed.</p>
+            <button onClick={closePopup}>Close</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
