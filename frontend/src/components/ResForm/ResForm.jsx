@@ -30,12 +30,6 @@ const ResForm = () => {
           <div className='res-container'>
           </div>
           <h1>Book your reservation</h1>
-            {/* <label>Name:</label>
-            <input type="text" name="name" required />
-            
-            <label>Email:</label>
-            <input type="email" name="email" required />
-             */}
             <label>Date</label>
             <input type="date" name="date" required />
             

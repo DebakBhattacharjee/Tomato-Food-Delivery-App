@@ -105,7 +105,7 @@
 
 .navbar-user-info button {
   background-color: #f00;
-  color: #fff;
+  color: #000000;
   border: none;
   padding: 8px 12px;
   border-radius: 4px;
@@ -137,8 +137,8 @@
 
 .popup-content button {
   padding: 10px 20px;
-  background-color: tomato;
-  color: white;
+  background-color: #ff6347;
+  color: #fc7962dc;
   border: none;
   border-radius: 5px;
   cursor: pointer;
