@@ -75,12 +75,12 @@
   }
 
   .app-download-text {
-    max-width: 50%;
+    max-width: 50vw;
     text-align: left; /* Left align text for larger screens */
   }
 
   .app-download-image {
-    max-width: 50%; /* Adjust width for larger screens */
+    max-width: 50vw; /* Adjust width for larger screens */
   }
 }
 

@@ -14,7 +14,7 @@ const AppDownload = () => {
             <img src={assets.app_store} alt="Download on App Store" />
           </div>
         </div>
-        <div className='appdownload-image'>
+        <div className='app-download-image'>
           <img src={assets.mobile_app} alt="Tomato App" />
         </div>
       </div>
