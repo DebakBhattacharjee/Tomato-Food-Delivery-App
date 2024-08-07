@@ -195,6 +195,11 @@ body {
   .resform-hero-image{
     height: 45vh;
   }
+  .resform-hero{
+    flex-direction: column;
+    gap: 50px;
+    margin-bottom: 20rem;
+  }
 }
 
 @media(max-width: 700px){
