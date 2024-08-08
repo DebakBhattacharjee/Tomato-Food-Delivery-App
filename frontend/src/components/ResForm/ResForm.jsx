@@ -21,14 +21,13 @@ const ResForm = () => {
       </nav> */}
       <section className="resform-hero">
         <div className="resform-left-section">
+          
           <img src="https://res.cloudinary.com/dy3g1sjfe/image/upload/v1721394750/main-wine.c30da0fbd212c48c4fe6_oozsxj.png" alt="Reservation" className="resform-hero-image" />
         </div>
        
         <div className="resform-right-section">
-         
           <form className="resform-reservation-form">
-          <div className='res-container'>
-          </div>
+          <div className="section-gradient-bg"></div>
           <h1>Book your reservation</h1>
             <label>Date</label>
             <input type="date" name="date" required />

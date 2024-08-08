@@ -65,12 +65,24 @@ body {
     align-items: center;
     justify-content: center;
   }
+  .section-gradient-bg {
+    position: absolute;
+    inset: 4rem -0.5rem 4rem -0.5rem;
+    max-width: 80rem;
+    margin: 0 auto;
+    border-radius: 1.5rem;
+    opacity: 0.3;
+    filter: blur(16px);
+    background: linear-gradient(90deg, #44ff9a, #44b0ff 22%, #8b44ff 48%, #ff6644 73%, #ebff70 99%);
+}
   
   .resform-hero-image {
     width: 80%;
     height: 99vh;
     border-radius: 20px;
     transition: transform 0.5s;
+    object-fit: contain;
+    mix-blend-mode: color-burn;
     /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
   }
   .resform-hero-image:hover {
@@ -135,7 +147,7 @@ body {
   overflow: hidden;
 }
 
-.sphere {
+/* .sphere {
   width: 150px;
   height: 150px;
   background: radial-gradient(circle, rgba(255,0,150,1) 0%, rgba(255,0,150,0) 60%);
@@ -143,7 +155,7 @@ body {
   position: relative;
   box-shadow: 0 0 20px rgba(255,0,150,0.7), 0 0 50px rgba(255,0,150,0.5), 0 0 100px rgba(255,0,150,0.3);
   animation: float 6s ease-in-out infinite;
-}
+} */
 
 @keyframes float {
   0% {
@@ -156,7 +168,7 @@ body {
     transform: translateY(0) translateX(0);
   }
 }
-.res-container {
+/* .res-container {
   position: absolute;
   z-index: -999;
   background-color: rgba(0, 255, 255, 0.849); 
@@ -177,7 +189,7 @@ body {
   border-radius: 50%;
   background: rgba(0, 255, 255, 0.1);
   box-shadow: 0 0 50px 30px rgba(0, 255, 255, 0.2), 0 0 100px 50px rgba(0, 255, 255, 0.1), 0 0 150px 100px rgba(0, 255, 255, 0.05);
-}
+} */
 
 @media(max-width: 1200px){
   .resform-hero-image{
@@ -198,7 +210,8 @@ body {
   .resform-hero{
     flex-direction: column;
     gap: 50px;
-    margin-bottom: 20rem;
+    margin-bottom: 25rem;
+    margin-top: 10rem;
   }
 }
 
