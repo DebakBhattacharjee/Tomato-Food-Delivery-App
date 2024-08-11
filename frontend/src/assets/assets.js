@@ -115,7 +115,11 @@ export const menu_list = [
     {
         menu_name: "Noodles",
         menu_image: "https://res.cloudinary.com/dy3g1sjfe/image/upload/v1721112980/menu_8_iw5xje.png"
-    }]
+    },
+     {
+        menu_name:"Wine",
+        menu_image:"https://res.cloudinary.com/dy3g1sjfe/image/upload/v1723386888/images_y7mier.jpg"
+     }]
 
 export const food_list = [
     {
@@ -347,5 +351,37 @@ export const food_list = [
         price: 15,
         description: "Food provides essential nutrients for overall health and well-being",
         category: "Noodles"
+    }
+    , {
+        _id: "33",
+        name: "Rum",
+        image: "https://res.cloudinary.com/dy3g1sjfe/image/upload/v1723387328/BACARDIBLACKDARKRUM_yx1eal.webp",
+        price: 15,
+        description: "Food provides essential nutrients for overall health and well-being",
+        category: "Wine"
+    }
+    , {
+        _id: "34",
+        name: "Scotch Whisky",
+        image: "https://res.cloudinary.com/dy3g1sjfe/image/upload/v1723387428/glenfiddich-scotch-glenfiddich-12-year-single-malt-scotch-whisky-750ml-31515746435165_h5duxl.webp",
+        price: 25,
+        description: "Food provides essential nutrients for overall health and well-being",
+        category: "Wine"
+    }
+    , {
+        _id: "35",
+        name: "Vodka",
+        image: "https://res.cloudinary.com/dy3g1sjfe/image/upload/v1723387941/GreyGoose_ajeigh.jpg",
+        price: 35,
+        description: "Food provides essential nutrients for overall health and well-being",
+        category: "Wine"
+    }
+    , {
+        _id: "36",
+        name: "Tequila",
+        image: "https://res.cloudinary.com/dy3g1sjfe/image/upload/v1723387649/15-09-26-RalfR-WLC-0244_cobzjr.jpg",
+        price: 45,
+        description: "Food provides essential nutrients for overall health and well-being",
+        category: "Wine"
     }
 ]
