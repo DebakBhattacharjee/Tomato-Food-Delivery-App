@@ -12,7 +12,6 @@ const Testimonials = () => {
 
           <div className="section-cards-wrapper">
             <div className="section-gradient-bg"></div>
-
             <div className="section-cards-container">
               <div className="card">
                 <div className="card-content">
