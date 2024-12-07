@@ -1,14 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
-
 .header {
   height: 34vw;
   margin: 30px auto;
-  background: url('https://res.cloudinary.com/dy3g1sjfe/image/upload/v1721112973/header_img_xzxm5d.png') no-repeat;
-  background-size: contain;
+  position: relative;
+  overflow: hidden;
+}
+
+.header-slide {
+  height: 34vw;
+  background: url('https://res.cloudinary.com/dy3g1sjfe/image/upload/v1721112973/header_img_xzxm5d.png') no-repeat center center;
+  background-size: cover;
   position: relative;
 }
 
-.header-contents{
+.header-contents {
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -19,42 +23,54 @@
   left: 6vw;
   animation: fadeIn 3s;
 }
-.header-contents h2{
-  font-weight:500;
+
+.header-contents h2 {
+  font-weight: 500;
   color: white;
-  font-size: max(4.5vw,22px);
+  font-size: max(4.5vw, 22px);
 }
-.header-contents p{
+
+.header-contents p {
   color: white;
   font-size: 1vw;
 }
-.header-contents button{
+
+.header-contents button {
   border: none;
   color: #747474;
   font-weight: 500;
   padding: 1vw 2.3vw;
   background: white;
-  font-size: max(1vw,13px);
+  font-size: max(1vw, 13px);
   border-radius: 50px;
-  margin-bottom: 5px;
   cursor: pointer;
 }
-@media (max-width:1050px) {
-  .header{
-      height: 38vw;
+
+.slick-dots {
+  bottom: 10px;
+}
+
+.slick-dots li button:before {
+  color: white;
+}
+
+@media (max-width: 1050px) {
+  .header {
+    height: 38vw;
   }
-  .header-contents{
-      max-width: 45%;
+  .header-contents {
+    max-width: 45%;
   }
 }
-@media(max-width:750px){
-  .header-contents{
-      max-width: 55%;
+
+@media (max-width: 750px) {
+  .header-contents {
+    max-width: 55%;
   }
-  .header-contents p{
-     display: none;
+  .header-contents p {
+    display: none;
   }
-  .header-contents button{
-      padding: 2vw 4vw;
+  .header-contents button {
+    padding: 2vw 4vw;
   }
 }

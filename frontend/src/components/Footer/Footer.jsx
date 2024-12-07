@@ -8,7 +8,11 @@ const Footer = () => {
       <div className="footer-content">
       <div className="section-gradient-bg"></div>
         <div className="footer-content-left">
-          <img src={assets.logo} alt="" />
+          <div>
+          <img className='LogoImg' src={assets.logo} alt="" />
+          <div className="menu-line"></div>
+          </div>
+          
           <p>“Good food is the foundation of genuine happiness.” <br />
           34-B, Belvedere Rd, Alipore, Kolkata, West Bengal 700027
           </p>
@@ -16,10 +20,14 @@ const Footer = () => {
             <img className='foot-icons' src={assets.facebook_icon} alt="" />
             <img className='foot-icons' src={assets.twitter_icon} alt="" />
             <img className='foot-icons' src={assets.linkedin_icon} alt="" />
+            
           </div>
         </div>
         <div className="footer-content-center">
+          <div>
           <h2>COMPANY</h2>
+          <div className="menu-line1"></div>
+          </div>
           <ul>
             <li>Home</li>
             <li>About us</li>
@@ -28,7 +36,10 @@ const Footer = () => {
           </ul>
         </div>
         <div className="footer-content-right">
-          <h2>GET IN TOUCH</h2>
+         <div>
+         <h2>GET IN TOUCH</h2>
+         <div className="menu-line2"></div>
+         </div>
           <ul>
             <li>+1-234-234-987</li>
             <li>contact@tomato.com</li>

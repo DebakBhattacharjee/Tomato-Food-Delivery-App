@@ -14,5 +14,8 @@
     "react-slick": "^0.30.2",
     "slick-carousel": "^1.8.1",
     "tailwind-merge": "^2.4.0"
+  },
+  "devDependencies": {
+    "vite-plugin-fonts": "^0.7.0"
   }
 }

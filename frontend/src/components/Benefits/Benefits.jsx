@@ -5,7 +5,7 @@ const Benefits = () => {
   return (
     <div className="benefits-section">
       <h2>Benefits Using Our Services</h2>
-      
+      <div className="menu-line"></div>
       <div className="benefits-container">
         <div className="benefit-item">
           <img  src="https://png.pngtree.com/png-vector/20190309/ourmid/pngtree-premium-quality-label-png-image_784322.jpg" alt="Best Quality" />

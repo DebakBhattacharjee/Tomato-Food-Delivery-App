@@ -3,7 +3,13 @@
   margin: 50px 0;
   padding: 2rem;
 }
-
+.menu-line {
+  width: 100px; /* Width of the line */
+  height: 5px; /* Thickness of the line */
+  background-color: tomato; /* Match your website's theme */
+  margin: 5px auto; /* Center the line */
+  border-radius: 2px; /* Rounded edges */
+}
 .benefits-section h2 {
   font-size: 2rem;
   margin-bottom: 20px;

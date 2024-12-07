@@ -8,6 +8,7 @@ const Testimonials = () => {
         <div className="section-content">
           <div className="section-header">
             <h2 className="section-title">Our happy customers say about us</h2>
+            <div className="menu-line"></div>
           </div>
 
           <div className="section-cards-wrapper">
