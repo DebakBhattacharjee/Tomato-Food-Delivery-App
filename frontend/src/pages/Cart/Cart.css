@@ -25,7 +25,8 @@
 }
 
 .cart-items-item img {
-  width: 50px;
+  width: 80px;
+  height: 60px;
 }
 .cart-item-image{
   border-radius: 10px;
@@ -118,7 +119,12 @@
     justify-content: start;
   }
 }
-
+.popupCloseButton{ 
+  color: white !important;
+}
+.promocodeSubmitButton{
+  cursor: pointer;
+}
 /* .popup {
   position: fixed;
   top: 0;

@@ -4,14 +4,14 @@
     margin-top: 50px;
   }
   
-  .animation {
+  /* .animation {
     margin: 20px auto;
     width: 100px;
     height: 100px;
     border-radius: 50%;
     background: green;
     position: relative;
-  }
+  } */
   
   .checkmark {
     width: 50px;
@@ -27,6 +27,14 @@
   .checkmark h2 {
     color: green;
   }
+  .deliveryImageContainer{
+      
+  }
+  .delvideo{
+    height: 400px;
+    width: 400px;
+  }
+  
   
   /* p {
     margin-top: 

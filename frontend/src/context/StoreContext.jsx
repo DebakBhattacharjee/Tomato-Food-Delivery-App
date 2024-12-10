@@ -5,16 +5,19 @@ export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
   const [cartItems, setCartItems] = useState(() => {
-    const savedCartItems = localStorage.getItem('cartItems');
-    return savedCartItems ? JSON.parse(savedCartItems) : {};
+    const savedState = localStorage.getItem('storeState');
+    return savedState ? JSON.parse(savedState).cartItems : {}; // Default to empty cart
   });
 
-  const deliveryCharge = 10;
+  const [deliveryCharge, setDeliveryCharge] = useState(() => {
+    const savedState = localStorage.getItem('storeState');
+    return savedState ? JSON.parse(savedState).deliveryCharge : 10; // Default delivery charge
+  });
 
   const addToCart = (itemId) => {
     setCartItems((prev) => {
       const newCartItems = { ...prev, [itemId]: (prev[itemId] || 0) + 1 };
-      localStorage.setItem('cartItems', JSON.stringify(newCartItems));
+      persistStoreState(newCartItems, deliveryCharge);
       return newCartItems;
     });
   };
@@ -27,14 +30,15 @@ const StoreContextProvider = (props) => {
       } else {
         delete newCartItems[itemId];
       }
-      localStorage.setItem('cartItems', JSON.stringify(newCartItems));
+      persistStoreState(newCartItems, deliveryCharge);
       return newCartItems;
     });
   };
 
   const clearCart = () => {
     setCartItems({});
-    localStorage.removeItem('cartItems');
+    setDeliveryCharge(10);
+    persistStoreState({}, 10); // Reset both cart and delivery charge
   };
 
   const getTotalCartAmount = () => {
@@ -44,9 +48,24 @@ const StoreContextProvider = (props) => {
     }, 0);
   };
 
+  const applyPromoCode = (code) => {
+    if (code === 'FREEDEL') {
+      setDeliveryCharge(0);
+      persistStoreState(cartItems, 0); // Persist updated delivery charge
+      alert('Promo code applied successfully! Delivery is now free.');
+    } else {
+      alert('Invalid promo code. Please try again.');
+    }
+  };
+
+  const persistStoreState = (cartItems, deliveryCharge) => {
+    const storeState = { cartItems, deliveryCharge };
+    localStorage.setItem('storeState', JSON.stringify(storeState));
+  };
+
   useEffect(() => {
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
-  }, [cartItems]);
+    persistStoreState(cartItems, deliveryCharge);
+  }, [cartItems, deliveryCharge]);
 
   const contextValue = {
     food_list,
@@ -56,7 +75,9 @@ const StoreContextProvider = (props) => {
     cartItems,
     getTotalCartAmount,
     deliveryCharge,
-    clearCart
+    setDeliveryCharge,
+    applyPromoCode,
+    clearCart,
   };
 
   return (

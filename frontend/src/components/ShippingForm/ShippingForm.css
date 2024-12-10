@@ -1,21 +1,247 @@
-/* src/components/ShippingForm.css */
-.shipping-form {
-    margin-top: 20px;
-  }
+/* Default (Desktop/Tablet) Layout */
+.shipping-container {
+  display: flex;
+  gap: 50px;
+  width: 100%;
+  box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
+  border-radius: 10px;
+}
+
+.order-summary-container {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+.orderSummaryHeading{
+  text-align: center;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.cart-item-image {
+  width: 80px; /* Adjust this size */
+  height: 60px; /* Adjust this size */
+  border-radius: 10px;
+  transition: 0.5s;
+  margin-left: 10px;
+}
+
+.cart-item-image:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
+}
+
+.order-summary {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: rgb(246, 179, 167) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+  flex: 1;
+}
+
+.order-summary h2 {
+  margin-bottom: 15px;
+}
+
+.order-summary ul {
+  list-style-type: none;
+  padding: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;
+  border-radius: 10px;
+}
+
+.order-summary li {
+  margin-bottom: 10px;
+}
+
+.address {
+  margin-top: 15px;
+}
+.totalAmount{
+  background-color: #ffffff;
+  padding-left: 20px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+.totalAmount p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+}
+.totalAmount strong {
+  font-weight: bold;
+  color: #222;
+}
+
+.image-container {
+  flex:1;
+  display: flex;
+ justify-content: center;
+  align-items:center;
+  padding-right: 10px;
+}
+
+.side-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.shippingform-button {
+  width: 100px;
+  background-color: tomato;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 20px;
+}
+
+.shippingform-button:hover {
+  background-color: #eb1616;
+}
+.address-card {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;
   
-  .shipping-form div {
-    margin-bottom: 10px;
+}
+
+.address-card h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: tomato; /* Match theme color */
+}
+
+.address-card p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+}
+
+.address-card strong {
+  font-weight: bold;
+  color: #222;
+}
+.menu-line {
+  width: 100px; /* Width of the line */
+  height: 5px; /* Thickness of the line */
+  background-color: tomato; /* Match your website's theme */
+  margin: 5px auto; /* Center the line */
+  border-radius: 2px; /* Rounded edges */
+}
+.radio-container {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 20px;
+}
+
+.radio-container input {
+  accent-color: tomato;
+  cursor: pointer;
+}
+
+.radio-container label {
+  font-size: 16px;
+  color: #333;
+}
+/* .popup {
+  position: fixed;
+  top: 0px;
+  bottom:10px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.popup-content p {
+  margin-bottom: 20px;
+}
+
+.popupCloseButton {
+  padding: 10px 20px;
+  background: #ff4c24;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+ */
+
+/* Responsive Layout for Small Screens (Mobile) */
+@media screen and (max-width: 768px) {
+  .shipping-container {
+    flex-direction: column;
+    align-items: center;
   }
-  
-  .shippingform-button{
-    background-color: green;
-    color: white;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
+
+  .order-summary-container {
+    width: 100%;
+    margin-bottom: 20px;
   }
-  
-  .shippingform-button:hover {
-    background-color: darkgreen;
+
+  .image-container {
+    width: 100%;
   }
-  
+
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    width: 100%;
+  }
+
+  .cart-item-image {
+    width: 60px;
+    height: 60px;
+    margin-top: 10px;
+    margin-left: 0;
+  }
+
+  .side-image {
+    width: 100%;
+    max-width: 400px; /* Max size for the image */
+    height: auto;
+  }
+
+  .order-summary {
+    padding: 15px;
+  }
+
+  .shippingform-button {
+    width: 100%;
+  }
+}
+
+/* Responsive Layout for Smaller Mobile Screens */
+@media screen and (max-width: 480px) {
+  .cart-item-image {
+    width: 50px; /* Adjust image size */
+    height: 50px;
+  }
+
+  .side-image {
+    width: 100%;
+    max-width: 300px; /* Max size for the image */
+    height: auto;
+  }
+}
