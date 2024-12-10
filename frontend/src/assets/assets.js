@@ -118,7 +118,7 @@ export const menu_list = [
     },
      {
         menu_name:"Wine",
-        menu_image:"https://res.cloudinary.com/dy3g1sjfe/image/upload/v1723386888/images_y7mier.jpg"
+        menu_image:"https://res.cloudinary.com/dy3g1sjfe/image/upload/v1733813060/pexels-asphotograpy-95960-modified_vii2xt.png"
      }]
 
 export const food_list = [
