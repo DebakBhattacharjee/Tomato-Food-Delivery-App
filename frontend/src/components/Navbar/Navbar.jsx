@@ -3,18 +3,22 @@ import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 import { assets } from '../../assets/assets';
 import { StoreContext } from '../../context/StoreContext';
-
+const token = localStorage.getItem('token'); 
 const Navbar = ({ setShowLogin, setIsLoggedIn: updateIsLoggedIn }) => {
   const [menu, setMenu] = useState('home');
   const [showPopup, setShowPopup] = useState(false);
   const [totalItems, setTotalItems] = useState(0);
   const [userName, setUserName] = useState('');
-  const token = localStorage.getItem('token'); // Get the token from localStorage
 
   const navigate = useNavigate();
+  const { cartItems, getTotalCartAmount } = useContext(StoreContext);
 
   const handleCartClick = () => {
-    // Your cart click logic
+    if (getTotalCartAmount() === 0) {
+      setShowPopup(true);
+    } else {
+      navigate('/cart');
+    }
   };
 
   const closePopup = () => {
@@ -22,19 +26,32 @@ const Navbar = ({ setShowLogin, setIsLoggedIn: updateIsLoggedIn }) => {
   };
 
   useEffect(() => {
-    // Fetch cart items count logic
-  }, []);
+    const total = Object.values(cartItems).reduce((sum, count) => sum + count, 0);
+    setTotalItems(total);
+  }, [cartItems]);
 
   useEffect(() => {
-    // If token exists, fetch user data
+    // const token = localStorage.getItem('token');
+    const user = localStorage.getItem('user');
+
     if (token) {
       updateIsLoggedIn(true);
-      fetchUserData(token); // Fetch user details using the token
+      if (user) {
+        try {
+          const userData = JSON.parse(user);
+          const { name } = userData;
+           setUserName(name); // Set userName from localStorage
+        } catch (error) {
+          console.error('Error parsing user data:', error);
+        }
+      } else {
+        console.log('User data is not available in localStorage');
+      }
+      fetchUserData(token);
     } else {
       updateIsLoggedIn(false);
     }
-  }, [token, updateIsLoggedIn]);
-
+  }, [updateIsLoggedIn]);
   const fetchUserData = async (token) => {
     try {
       const response = await fetch('http://localhost:5000/get-user-details', { // Make sure this URL is correct
@@ -44,11 +61,9 @@ const Navbar = ({ setShowLogin, setIsLoggedIn: updateIsLoggedIn }) => {
           'Cache-Control': 'no-cache', // Prevent the browser from caching the request
         },
       });
-
       if (!response.ok) {
         throw new Error('Failed to fetch user data');
       }
-
       const data = await response.json();
       if (data.user) {
         setUserName(data.user.name); // Set the user name from the response
@@ -69,21 +84,25 @@ const Navbar = ({ setShowLogin, setIsLoggedIn: updateIsLoggedIn }) => {
   };
 
   return (
-    <div className="navbar">
-      <Link to="/" onClick={() => setMenu('home')}>
-        <img src={assets.logo} alt="logo" className="logo" />
+    <div className='navbar'>
+      <Link to='/' onClick={() => setMenu('home')}>
+        <img src={assets.logo} alt='logo' className='logo' />
       </Link>
-      <ul className="navbar-menu">
-        {/* Add other navbar items */}
+      <ul className='navbar-menu'>
+        <Link to='/' onClick={() => setMenu('home')} className={menu === 'home' ? 'active' : ''}>Home</Link>
+        <a href='#explore-menu' onClick={() => setMenu('menu')} className={menu === 'menu' ? 'active' : ''}>Menu</a>
+        <a href='#resform' onClick={() => setMenu('reservation')} className={menu === 'reservation' ? 'active' : ''}>Reservation</a>
+        <a href='#app-download' onClick={() => setMenu('mobile-app')} className={menu === 'mobile-app' ? 'active' : ''}>Mobile App</a>
+        <a href='#footer' onClick={() => setMenu('contact us')} className={menu === 'contact us' ? 'active' : ''}>Contact Us</a>
       </ul>
-      <div className="navbar-right">
-        <div className="navbar-search-icon">
-          <img src={assets.basket_icon} alt="cart" onClick={handleCartClick} />
-          {totalItems > 0 && <div className="cart-count">{totalItems}</div>}
+      <div className='navbar-right'>
+        <div className='navbar-search-icon'>
+          <img src={assets.basket_icon} alt='cart' onClick={handleCartClick} />
+          {totalItems > 0 && <div className='cart-count'>{totalItems}</div>}
         </div>
-        {token ? (
-          <div className="navbar-user-info">
-            <p className="username">Hi, {userName}</p>
+        {localStorage.getItem('token') ? (
+          <div className='navbar-user-info'>
+            <p className='username'>Hi, {userName}</p>
             <button onClick={handleLogout}>Log Out</button>
           </div>
         ) : (
@@ -103,6 +122,3 @@ const Navbar = ({ setShowLogin, setIsLoggedIn: updateIsLoggedIn }) => {
 };
 
 export default Navbar;
-
-
-

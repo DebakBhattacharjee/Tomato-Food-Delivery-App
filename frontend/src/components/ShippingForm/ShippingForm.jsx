@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { StoreContext } from "../../context/StoreContext";
 import "./ShippingForm.css";
+const token = localStorage.getItem('token'); 
 
 const ShippingForm = ({ onBack, onNext }) => {
   const { cartItems, food_list, currency, getTotalCartAmount, deliveryCharge } =
@@ -12,30 +13,38 @@ const ShippingForm = ({ onBack, onNext }) => {
   const [isCODSelected, setIsCODSelected] = useState(false);
   const [showPopup, setShowPopup] = useState({ message: "", show: false });
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    const user = localStorage.getItem("user");
-    if (token) {
-      if (user) {
-        try {
-          const userData = JSON.parse(user);
-          const { name, address, phone, email } = userData;
-          setUserName(name);
-          setAddress(address);
-          setPhone(phone);
-          setEmail(email);
-        } catch (error) {
-          console.error("Error parsing user data:", error);
-        }
-      } else {
-        console.log("User data is not available in localStorage");
-      }
-    }
-  }, []);
+  const fetchUserData = async (token) => {
+    try {
+      const response = await fetch('http://localhost:5000/get-user-details', { // Make sure this URL is correct
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Cache-Control': 'no-cache', // Prevent the browser from caching the request
+        },
+      });
 
+      if (!response.ok) {
+        throw new Error('Failed to fetch user data');
+      }
+
+      const data = await response.json();
+     
+      if (data.user) {
+      
+        setUserName(data.user.name); // Set the user name from the response
+        setAddress(data.user.address);
+        setPhone(data.user.phone);
+        setEmail(data.user.email);
+      } else {
+        console.error('User not found');
+      }
+    } catch (error) {
+      console.error('Error fetching user data:', error);
+    }
+  };
   const cartTotal = getTotalCartAmount();
   const grandTotal = cartTotal + deliveryCharge;
-
+  fetchUserData(token);
   const handleNext = () => {
     if (isCODSelected) {
       onNext();
