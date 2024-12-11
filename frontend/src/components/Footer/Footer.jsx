@@ -10,7 +10,7 @@ const Footer = () => {
         <div className="footer-content-left">
           <div>
           <img className='LogoImg' src={assets.logo} alt="" />
-          <div className="menu-line"></div>
+          <div className="menu-line1"></div>
           </div>
           
           <p>“Good food is the foundation of genuine happiness.” <br />

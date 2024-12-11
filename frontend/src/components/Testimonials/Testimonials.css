@@ -37,8 +37,8 @@
     text-align: center;
     order: 3;
 }
-.menu-line {
-    width: 100px; /* Width of the line */
+.menu-line-test{
+    width: 100px ; /* Width of the line */
     height: 5px; /* Thickness of the line */
     background-color: tomato; /* Match your website's theme */
     margin: 10px auto; /* Center the line */
