@@ -2,23 +2,10 @@ import React, { useState } from 'react';
 import './ResForm.css';
 
 const ResForm = () => {
-  const [darkMode, setDarkMode] = useState(false);
-
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
 
   return (
-    <div className={darkMode ? 'resform dark-mode' : 'resform'} id='resform'>
-      {/* <nav className="resform-navbar">
-        <div className="resform-logo">Logo</div>
-        <div className="resform-nav-buttons">
-          <button className="resform-dark-mode-toggle" onClick={toggleDarkMode}>
-            {darkMode ? 'Light Mode' : 'Dark Mode'}
-          </button>
-          <button className="resform-checkout-button">Go to Checkout</button>
-        </div>
-      </nav> */}
+    <div className='resform' id='resform'>
+      
       <section className="resform-hero">
         <div className="resform-left-section">
           
@@ -34,7 +21,6 @@ const ResForm = () => {
             
             <label>Time</label>
             <input type="time" name="time" required />
-            
             
             
             <label>Type</label>
