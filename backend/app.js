@@ -16,6 +16,12 @@ app.use(cors());
 // userId: fooddelivery2024
 // password: debaktanmayproj2024
 
+app.use(cors({
+  origin: 'http://localhost:5173', // Allow requests from your frontend's domain
+  methods: ['GET', 'POST'], // Allow specific HTTP methods
+  credentials: true, // Allow credentials (cookies, etc.)
+}));
+
 
 const User = require('./models/user');
 const JWT_SECRET = '#RNBf]/Q=cs/HSKDYk5`:~-)j3{&c=o`}m4EZ?li\T<wlD&@mnu+nM8.ZuT9I?sW';
@@ -97,6 +103,44 @@ app.post('/login', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
+
+// Middleware to authenticate and get the user ID from the token
+const authenticateUser = async (req, res, next) => {
+  const token = req.headers.authorization?.split(' ')[1]; // Extract token from 'Authorization' header
+
+  if (!token) {
+    return res.status(401).json({ error: 'Token is required' });
+  }
+
+  try {
+    // Verify the token and decode it
+    const decoded = jwt.verify(token, JWT_SECRET);
+    req.userId = decoded.userId; // Attach userId to the request object
+    next(); // Continue to the next middleware or route handler
+  } catch (error) {
+    console.error('Token verification failed:', error);
+    return res.status(401).json({ error: 'Invalid or expired token' });
+  }
+};
+
+// Route to get user details
+app.get('/get-user-details', authenticateUser, async (req, res) => {
+  try {
+    // Use the userId from the decoded token to find the user in the database
+    const user = await User.findById(req.userId);
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Return user details
+    res.status(200).json({ user });
+  } catch (error) {
+    console.error('Error fetching user data:', error);
+    res.status(500).json({ error: 'Failed to fetch user data' });
+  }
+});
+
 
 
 
