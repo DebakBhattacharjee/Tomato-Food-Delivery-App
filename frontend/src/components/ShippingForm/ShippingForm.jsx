@@ -130,7 +130,7 @@ const ShippingForm = ({ onBack, onNext }) => {
             Back
           </button>
           <button className="shippingform-button" onClick={handleNext}>
-            Next
+            Pay
           </button>
         </div>
       </div>

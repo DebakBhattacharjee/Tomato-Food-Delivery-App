@@ -1,54 +1,66 @@
-.explore-menu{
+.explore-menu {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center align content horizontally */
+  align-items: center;
   gap: 10px;
-  margin: 0 auto; /* Center the container */
+  margin: 0 auto;
   text-align: center;
+  padding: 20px;
 }
-.menu-line  {
-  width: 100px; /* Width of the line */
-  height: 2px; /* Thickness of the line */
-  background-color: tomato; /* Match your website's theme */
-  margin: 10px auto !important; /* Center the line */
-  border-radius: 2px; /* Rounded edges */
+
+.menu-line {
+  width: 100px;
+  height: 2px;
+  background-color: tomato;
+  margin: 10px auto !important;
+  border-radius: 2px;
   margin-top: -10px !important;
 }
 
-
 .explore-menu h1 {
   color: #262626;
-  font-weight: 600; /* Bold for emphasis */
-  font-size: 2.5vw; /* Dynamic size for responsiveness */
+  font-weight: 600;
+  font-size: clamp(1.8rem, 4vw, 2.5rem); /* Dynamic size */
   margin: 10px 0;
 }
 
 .explore-menu-text {
-  max-width: 60%; /* Adjust width for better readability */
+  max-width: 60%;
   color: black;
-  font-size: 1.2vw; /* Dynamic font size */
+  font-size: clamp(0.9rem, 1.2vw, 1.2rem);
   font-weight: 400;
 }
 
 .explore-menu-list {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  gap: 30px;
+  gap: 20px;
+  flex-wrap: wrap; /* Wrap items on smaller screens */
   text-align: center;
-  margin: 20px 0px;
-  overflow-x: auto; /* Allow scrolling for small screens */
+  margin: 20px 0;
+  overflow-x: auto;
   padding: 0 10px;
 }
 
 .explore-menu-list::-webkit-scrollbar {
-  display: none; /* Hide the scrollbar */
+  display: none;
+}
+
+.explore-menu-list-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.explore-menu-list-item:hover {
+  transform: scale(1.1); /* Subtle hover effect */
 }
 
 .explore-menu-list-item img {
-  width: 7.5vw;
-  min-width: 80px;
-  cursor: pointer;
+  width: clamp(60px, 8vw, 100px);
   border-radius: 50%;
   transition: 0.2s;
 }
@@ -56,12 +68,11 @@
 .explore-menu-list-item p {
   margin-top: 10px;
   color: #474747;
-  font-size: max(1.4vw, 16px);
-  cursor: pointer;
+  font-size: clamp(0.9rem, 1.2vw, 1.4rem);
 }
 
 .explore-menu hr {
-  width: 80%; /* Center the horizontal line */
+  width: 80%;
   margin: 10px auto;
   height: 2px;
   background-color: #e2e2e2;
@@ -73,18 +84,22 @@
   padding: 2px;
 }
 
-/* Media Queries for Responsive Design */
-@media (max-width: 1050px) {
+/* Media Queries for Smaller Screens */
+@media (max-width: 768px) {
   .explore-menu h1 {
-    font-size: 5vw; /* Increase size for smaller screens */
+    font-size: 1.8rem;
   }
 
   .explore-menu-text {
-    max-width: 80%;
-    font-size: 14px;
+    max-width: 90%;
+    font-size: 0.9rem;
+  }
+
+  .explore-menu-list {
+    gap: 15px;
   }
 
   .explore-menu-list-item img {
-    width: 10vw; /* Adjust size for smaller screens */
+    width: 60px;
   }
 }
