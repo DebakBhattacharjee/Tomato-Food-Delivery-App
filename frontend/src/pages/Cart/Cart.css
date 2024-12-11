@@ -72,6 +72,12 @@
 .cart-total hr {
   margin: 10px 0px;
 }
+.cart-image{
+  height: 200px;
+  width: 200px;
+  align-items: center;
+ 
+}
 
 .cart-total button {
   border: none;
@@ -85,6 +91,7 @@
 
 .cart-promocode {
   flex: 1;
+  margin-top: -70px;
 }
 .cart-promocode p {
   color: #555555;

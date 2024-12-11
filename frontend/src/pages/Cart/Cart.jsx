@@ -94,7 +94,10 @@ const Cart = () => {
           </div>
           <button onClick={handleCheckoutClick}>PROCEED TO CHECKOUT</button>
         </div>
-        <div className="cart-promocode">
+       <div className="cart-promocode">
+       <div>
+          <img className='cart-image' src="https://res.cloudinary.com/dy3g1sjfe/image/upload/v1733934740/rb_2148504209_gc5hgl.png" alt="" />
+        </div>
           <div>
             <p>If you have a promo code, Enter it here</p>
             <div className="cart-promocode-input">
@@ -107,7 +110,9 @@ const Cart = () => {
               <button className='promocodeSubmitButton' onClick={handlePromoSubmit}>Submit</button>
             </div>
           </div>
-        </div>
+      
+       
+       </div>
       </div>
     </div>
   );
