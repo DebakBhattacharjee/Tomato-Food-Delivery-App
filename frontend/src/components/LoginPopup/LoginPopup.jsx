@@ -19,7 +19,7 @@ const LoginPopup = ({ setShowLogin, setIsLoggedIn }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const url = currState === 'Login' ? 'http://localhost:5000/login' : 'http://localhost:5000/signup';
+    const url = currState === 'Login' ? 'https://tomato-food-delivery-app-c3fj.onrender.com/login' : 'https://tomato-food-delivery-app-c3fj.onrender.com/signup';
   
     try {
       const response = await fetch(url, {

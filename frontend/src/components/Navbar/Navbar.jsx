@@ -54,7 +54,7 @@ const Navbar = ({ setShowLogin, setIsLoggedIn: updateIsLoggedIn }) => {
   }, [updateIsLoggedIn]);
   const fetchUserData = async (token) => {
     try {
-      const response = await fetch('http://localhost:5000/get-user-details', { // Make sure this URL is correct
+      const response = await fetch('https://tomato-food-delivery-app-c3fj.onrender.com/get-user-details', { // Make sure this URL is correct
         method: 'GET',
         headers: {
           Authorization: `Bearer ${token}`,
