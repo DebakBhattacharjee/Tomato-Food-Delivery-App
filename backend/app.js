@@ -16,14 +16,14 @@ app.use(cors());
 // userId: fooddelivery2024
 // password: debaktanmayproj2024
 
-app.use(cors({
-  origin: 'tomato-food-delivery-app-eight.vercel.app', 
-  methods: ['GET', 'POST'], // Allow specific HTTP methods
-  credentials: true, // Allow credentials (cookies, etc.)
-}));
+//app.use(cors({
+ // origin: 'tomato-food-delivery-app-eight.vercel.app', 
+ // methods: ['GET', 'POST'], // Allow specific HTTP methods
+  //credentials: true, // Allow credentials (cookies, etc.)
+//}));
 
 
-const User = require('./models/user');
+const User = require('./models/User');
 const JWT_SECRET = '#RNBf]/Q=cs/HSKDYk5`:~-)j3{&c=o`}m4EZ?li\T<wlD&@mnu+nM8.ZuT9I?sW';
 
 // schema required: User(login, signup), admin(login, signup), category,
