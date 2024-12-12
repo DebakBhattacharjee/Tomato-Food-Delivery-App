@@ -17,7 +17,7 @@ app.use(cors());
 // password: debaktanmayproj2024
 
 app.use(cors({
-  origin: 'http://localhost:5173', // Allow requests from your frontend's domain
+  origin: 'tomato-food-delivery-app-eight.vercel.app', 
   methods: ['GET', 'POST'], // Allow specific HTTP methods
   credentials: true, // Allow credentials (cookies, etc.)
 }));
