@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 import { assets } from '../../assets/assets';
 import { StoreContext } from '../../context/StoreContext';
-
+const token = localStorage.getItem('token'); 
 const Navbar = ({ setShowLogin, setIsLoggedIn: updateIsLoggedIn }) => {
   const [menu, setMenu] = useState('home');
   const [showPopup, setShowPopup] = useState(false);
@@ -31,7 +31,7 @@ const Navbar = ({ setShowLogin, setIsLoggedIn: updateIsLoggedIn }) => {
   }, [cartItems]);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    // const token = localStorage.getItem('token');
     const user = localStorage.getItem('user');
 
     if (token) {
@@ -40,17 +40,40 @@ const Navbar = ({ setShowLogin, setIsLoggedIn: updateIsLoggedIn }) => {
         try {
           const userData = JSON.parse(user);
           const { name } = userData;
-          setUserName(name); // Set userName from localStorage
+           setUserName(name); // Set userName from localStorage
         } catch (error) {
           console.error('Error parsing user data:', error);
         }
       } else {
         console.log('User data is not available in localStorage');
       }
+      fetchUserData(token);
     } else {
       updateIsLoggedIn(false);
     }
   }, [updateIsLoggedIn]);
+  const fetchUserData = async (token) => {
+    try {
+      const response = await fetch('http://localhost:5000/get-user-details', { // Make sure this URL is correct
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Cache-Control': 'no-cache', // Prevent the browser from caching the request
+        },
+      });
+      if (!response.ok) {
+        throw new Error('Failed to fetch user data');
+      }
+      const data = await response.json();
+      if (data.user) {
+        setUserName(data.user.name); // Set the user name from the response
+      } else {
+        console.error('User not found');
+      }
+    } catch (error) {
+      console.error('Error fetching user data:', error);
+    }
+  };
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -79,7 +102,7 @@ const Navbar = ({ setShowLogin, setIsLoggedIn: updateIsLoggedIn }) => {
         </div>
         {localStorage.getItem('token') ? (
           <div className='navbar-user-info'>
-            <p>Hi, {userName}</p>
+            <p className='username'>Hi, {userName}</p>
             <button onClick={handleLogout}>Log Out</button>
           </div>
         ) : (

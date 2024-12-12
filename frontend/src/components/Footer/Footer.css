@@ -1,7 +1,8 @@
 .footer{
   color: black;
   backdrop-filter: blur(10px);
-   background: linear-gradient(to top right, #fcf4f2, #ef741c);
+   /* background: linear-gradient(to top right, #fcf4f2, #ef741c); */
+   background: rgb(247, 248, 248);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,26 +10,52 @@
   padding: 20px 8vw;
   padding-top: 80px;
   margin-top: 100px;
-
 }
-
+.menu-line {
+  width: 100px; /* Width of the line */
+  height: 5px; /* Thickness of the line */
+  background-color: tomato; /* Match your website's theme */
+  margin: 5px auto; /* Center the line */
+  border-radius: 2px; /* Rounded edges */
+}
+.menu-line1{
+  width: 60px; /* Width of the line */
+  height: 5px; /* Thickness of the line */
+  background-color: tomato; /* Match your website's theme */
+  margin: 5px auto; /* Center the line */
+  border-radius: 2px; /* Rounded edges */
+}
+.menu-line2{
+  width: 80px; /* Width of the line */
+  height: 5px; /* Thickness of the line */
+  background-color: tomato; /* Match your website's theme */
+  margin: 5px auto; /* Center the line */
+  border-radius: 2px; /* Rounded edges */
+}
 .footer-content{
   width: 100%;
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
   gap: 80px;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+  
 }
 .footer-content-left, .footer-content-right, .footer-content-center {
   display: flex;
   flex-direction: column;
   align-items: start;
   gap: 20px;
+  backdrop-filter: blur(10px);
 }
-
 .footer-content-left li, .footer-content-right li, .footer-content-center li {
   list-style: none;
   margin-bottom: 10px;
   cursor: pointer;
+}
+.LogoImg:hover{
+  scale: 102%;
 }
 
 .footer-content-right h2, .footer-content-center h2 {
@@ -36,9 +63,16 @@
 }
 
 .footer-social-icons img{
-  width: 40px;
   margin-right: 15px;
+ 
 }
+.footer-social-icons{
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgba(45, 43, 43, 0.377);
+}
+
 
 .footer hr{
   width: 100%;

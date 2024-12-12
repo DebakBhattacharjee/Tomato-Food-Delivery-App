@@ -1,0 +1,84 @@
+.benefits-section {
+  text-align: center;
+  margin: 50px 0;
+  padding: 2rem;
+}
+.menu-line {
+  width: 100px; /* Width of the line */
+  height: 5px; /* Thickness of the line */
+  background-color: tomato; /* Match your website's theme */
+  margin: 5px auto; /* Center the line */
+  border-radius: 2px; /* Rounded edges */
+}
+.benefits-section h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.benefits-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 3rem;
+}
+
+.benefit-item {
+  flex: 1 1 calc(33.333% - 20px); /* 3 items per row with space in between */
+  max-width: 300px;
+  min-width: 250px;
+  text-align: center;
+  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+  padding: 2rem;
+  border-radius: 5px;
+  backdrop-filter: blur(16px);
+  background: rgba(255, 255, 255, 0.838);
+}
+
+.benefit-item img {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 15px;
+}
+
+.benefit-item h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+.benefit-item p {
+  font-size: 1rem;
+  color: #666;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .benefit-item {
+    flex: 1 1 calc(50% - 20px); /* 2 items per row for tablets */
+  }
+
+  .benefits-section h2 {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .benefit-item {
+    flex: 1 1 100%; /* Single item per row for small devices */
+    min-width: unset; /* Allow full width on small devices */
+  }
+
+  .benefits-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .benefit-item h3 {
+    font-size: 1.25rem;
+  }
+
+  .benefit-item p {
+    font-size: 0.9rem;
+  }
+}

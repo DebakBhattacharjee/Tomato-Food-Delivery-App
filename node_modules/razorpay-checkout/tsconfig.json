@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "outDir": "lib",
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["types/*.ts"]
+}

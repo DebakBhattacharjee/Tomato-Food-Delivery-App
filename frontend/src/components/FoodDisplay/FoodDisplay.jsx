@@ -10,7 +10,7 @@ const FoodDisplay = ({ category }) => {
 
   return (
     <div className='food-display' id='food-display'>
-      <div className='floating-div'></div>
+      {/* <div className='floating-div'></div> */}
       <h2>Top Dishes near you</h2>
       <div className="food-display-list">
         {food_list.map((item) => {
